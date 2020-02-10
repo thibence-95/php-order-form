@@ -52,28 +52,28 @@ $zipErr = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty($_POST["email"])) {
-        $emailErr = "E-mail is required.";
+        $emailErr = "<div class='alert alert-danger'>Don't forget to enter your e-mail address!</div>";
     }
     else {
         $email = ($_POST["email"]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $emailErr = "Invalid email format";
+            $emailErr = "<div class='alert alert-danger'>Hey, that doesn't look like an email!</div>";
         }
     }
 
 
     if (empty($_POST["street"])) {
-        $streetErr = "Street name is required";
+        $streetErr = "<div class='alert alert-danger'>We won't be able to deliver your meal without a street name.</div>";
     }
     else {
         $street ($_POST["street"]);
         if (!is_string($_POST["street"])) {
-            $streetErr = "Invalid street name";
+            $streetErr = "<div class='alert alert-danger'>Sorry, I don't know where that is.</div>";
         }
     }
 
     if (empty ($_POST["streetnumber"])) {
-        $streetnumErr = "Street number is required";
+        $streetnumErr = "<div class='alert alert-danger'>It'd be a lot easier if we knew where you lived</div>";
     }
     else {
         $streetnum ($_POST["streetnumber"]);
