@@ -38,15 +38,8 @@ $products = [
     ['name' => 'Ice-tea Green', 'price' => 3]
 ];
 
-$emailErr = "";
-$street = "";
-$streetErr = "";
-$streetnum = "";
-$streetnumErr = "";
-$city = "";
-$cityErr = "";
-$zip = "";
-$zipErr = "";
+$emailErr = $streetErr = $streetnumErr = $cityErr = $zipErr = null;
+$street = $streetnum = $city = $zip = null;
 
 
 
@@ -66,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $streetErr = "<div class='alert alert-danger'>We won't be able to deliver your meal without a street name.</div>";
     }
     else {
-        $street ($_POST["street"]);
+        $street = ($_POST["street"]);
         if (!is_string($_POST["street"])) {
             $streetErr = "<div class='alert alert-danger'>Sorry, I don't know where that is.</div>";
         }
@@ -76,37 +69,45 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $streetnumErr = "<div class='alert alert-danger'>It'd be a lot easier if we knew where you lived</div>";
     }
     else {
-        $streetnum ($_POST["streetnumber"]);
+        $streetnum = ($_POST["streetnumber"]);
         if (!is_numeric($_POST["streetnumber"])) {
-            $streetnumErr = "Invalid street number";
+            $streetnumErr = "<div class='alert alert-danger'>That can't be a number...</div>";
         }
     }
 
     if (empty ($_POST["city"])) {
-        $cityErr = "City is required";
+        $cityErr = "<div class='alert alert-danger'>Yo what your ends be?</div>";
     }
     else {
-        $city ($_POST["city"]);
+        $city = ($_POST["city"]);
         if (!is_string($_POST["city"])) {
-            $cityErr = "Invalid city";
+            $cityErr = "<div class='alert alert-danger'>That really your ends?</div>";
         }
     }
 
     if (empty ($_POST["zipcode"])) {
-        $zipErr = "Zip code is required";
+        $zipErr = "<div class='alert alert-danger'>Hey we need your zip for some reason</div>";
     }
     else {
-        $zip ($_POST["zipcode"]);
+        $zip = ($_POST["zipcode"]);
         if (!is_numeric($_POST["zipcode"])) {
-            $zipErr = "Invalid zip code";
+            $zipErr = "<div class='alert alert-danger'>That's not even a number. Try again with a real zipcode you piece of shit.</div>";
         }
     }
 }
-
+echo $email;
 echo $emailErr;
+echo $street;
+echo $streetErr;
+echo $streetnum;
+echo $zip;
+echo $zipErr;
 
 
 $totalValue = 0;
+/*foreach ($_POST['price'] as $value) {
+    $totalValue += (int)$value;
+}*/
 
 //whatIsHappening();
 
