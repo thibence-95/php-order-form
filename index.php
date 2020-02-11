@@ -7,6 +7,7 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 
+
 session_start(); //we are going to use session variables so we need to enable sessions
 
 function whatIsHappening() {
@@ -39,7 +40,7 @@ $products = [
 ];
 
 $emailErr = $streetErr = $streetnumErr = $cityErr = $zipErr = null;
-$street = $streetnum = $city = $zip = null;
+$email = $street = $streetnum = $city = $zip = null;
 
 
 
@@ -50,39 +51,39 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     else {
         $email = ($_POST["email"]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $emailErr = "<div class='alert alert-danger'>Hey, that doesn't look like an email!</div>";
+            $emailErr = "<div class='alert alert-danger'>Hey, that doesn't even look like an email address!</div>";
         }
     }
 
 
     if (empty($_POST["street"])) {
-        $streetErr = "<div class='alert alert-danger'>We won't be able to deliver your meal without a street name.</div>";
+        $streetErr = "<div class='alert alert-danger'>We won't be able to deliver a meal without knowing a nice street name.</div>";
     }
     else {
         $street = ($_POST["street"]);
-        if (!is_string($_POST["street"])) {
+/*        if (!is_string($_POST["street"])) {
             $streetErr = "<div class='alert alert-danger'>Sorry, I don't know where that is.</div>";
-        }
+        }*/
     }
 
-    if (empty ($_POST["streetnumber"])) {
+    if (empty($_POST["streetnumber"])) {
         $streetnumErr = "<div class='alert alert-danger'>It'd be a lot easier if we knew where you lived</div>";
     }
     else {
         $streetnum = ($_POST["streetnumber"]);
         if (!is_numeric($_POST["streetnumber"])) {
-            $streetnumErr = "<div class='alert alert-danger'>That can't be a number...</div>";
+            $streetnumErr = "<div class='alert alert-danger'>That can't possibly be a number...</div>";
         }
     }
 
-    if (empty ($_POST["city"])) {
+    if (empty($_POST["city"])) {
         $cityErr = "<div class='alert alert-danger'>Yo what your ends be?</div>";
     }
     else {
         $city = ($_POST["city"]);
-        if (!is_string($_POST["city"])) {
-            $cityErr = "<div class='alert alert-danger'>That really your ends?</div>";
-        }
+/*        if (!is_string($_POST["city"])) {
+            $cityErr = "<div class='alert alert-danger'>That really your ends? NAH B! At least enter one that exists</div>";
+        }*/
     }
 
     if (empty ($_POST["zipcode"])) {
@@ -95,19 +96,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     }
 }
+
+/*
 echo $email;
 echo $emailErr;
 echo $street;
 echo $streetErr;
-echo $streetnum;
+echo $streetnumErr;
+echo $city;
+echo $cityErr;
 echo $zip;
 echo $zipErr;
+*/
+
 
 
 $totalValue = 0;
 /*foreach ($_POST['price'] as $value) {
     $totalValue += (int)$value;
 }*/
+
 
 //whatIsHappening();
 
