@@ -22,7 +22,7 @@ function whatIsHappening() {
 }
 
 //your products with their price.
-$products = [
+$productsFood = [
     ['name' => 'Pesto Mozzarella', 'price' => 3],
     ['name' => 'Club Ham', 'price' => 3.20],
     ['name' => 'Club Cheese', 'price' => 3],
@@ -31,13 +31,20 @@ $products = [
     ['name' => 'Club Salmon', 'price' => 5]
 ];
 
-$products = [
+$productsDrank = [
     ['name' => 'Coke', 'price' => 2],
     ['name' => 'Fanta', 'price' => 2],
     ['name' => '7up', 'price' => 2],
     ['name' => 'Ice-tea', 'price' => 2],
-    ['name' => 'Ice-tea Green', 'price' => 3]
+    ['name' => 'Ice-tea Green', 'price' => 3],
+    ['name' => 'Ginger Neil', 'price' => "FREE"]
 ];
+
+
+$totalValue = 0;
+/*foreach ($_POST['price'] as $value) {
+    $totalValue += (int)$value;
+}*/
 
 $emailErr = $streetErr = $streetnumErr = $cityErr = $zipErr = null;
 $email = $street = $streetnum = $city = $zip = null;
@@ -111,10 +118,7 @@ echo $zipErr;
 
 
 
-$totalValue = 0;
-/*foreach ($_POST['price'] as $value) {
-    $totalValue += (int)$value;
-}*/
+
 
 
 //whatIsHappening();
