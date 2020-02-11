@@ -55,7 +55,7 @@
                     <?php echo $cityErr; ?>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="zipcode">Zipcode</label>
+                    <label for="zipcode">Zip code</label>
                     <input type="number" id="zipcode" name="zipcode" class="form-control"value="<?php echo isset($_POST['zipcode']) ? $_POST['zipcode'] : '' ?>">
                     <?php echo $zipErr; ?>
                 </div>

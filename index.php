@@ -22,7 +22,8 @@ function whatIsHappening() {
 }
 
 //your products with their price.
-$productsFood = [
+
+$Food = [
     ['name' => 'Pesto Mozzarella', 'price' => 3],
     ['name' => 'Club Ham', 'price' => 3.20],
     ['name' => 'Club Cheese', 'price' => 3],
@@ -31,7 +32,7 @@ $productsFood = [
     ['name' => 'Club Salmon', 'price' => 5]
 ];
 
-$productsDrank = [
+$Drank = [
     ['name' => 'Coke', 'price' => 2],
     ['name' => 'Fanta', 'price' => 2],
     ['name' => '7up', 'price' => 2],
@@ -39,6 +40,17 @@ $productsDrank = [
     ['name' => 'Ice-tea Green', 'price' => 3],
     ['name' => 'Ginger Neil', 'price' => "FREE"]
 ];
+
+//food & drank schwitz
+$products = $Drank;
+if (isset($_GET["food"])) {
+    if ($_GET["food"] == 1) {
+        $products = $Food;
+    }
+    else {
+        $products = $Drank;
+    }
+}
 
 
 $totalValue = 0;
@@ -50,8 +62,9 @@ $emailErr = $streetErr = $streetnumErr = $cityErr = $zipErr = null;
 $email = $street = $streetnum = $city = $zip = null;
 
 
-
+//EMAIL VALIDATION
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
     if (empty($_POST["email"])) {
         $emailErr = "<div class='alert alert-danger'>Don't forget to enter your e-mail address!</div>";
     }
@@ -62,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     }
 
-
+//ADDRESS VALIDATION
     if (empty($_POST["street"])) {
         $streetErr = "<div class='alert alert-danger'>We won't be able to deliver a meal without knowing a nice street name.</div>";
     }
@@ -99,28 +112,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     else {
         $zip = ($_POST["zipcode"]);
         if (!is_numeric($_POST["zipcode"])) {
-            $zipErr = "<div class='alert alert-danger'>That's not even a number. Try again with a real zipcode you piece of shit.</div>";
+            $zipErr = "<div class='alert alert-danger'>That's not even a number. Try again with a real zip code you piece of shit.</div>";
         }
     }
 }
 
-/*
-echo $email;
-echo $emailErr;
-echo $street;
-echo $streetErr;
-echo $streetnumErr;
-echo $city;
-echo $cityErr;
-echo $zip;
-echo $zipErr;
-*/
+//COUNTDOWN
+//$now = time($nowtime );
 
 
 
 
-
-
-//whatIsHappening();
+whatIsHappening();
 
 require 'form-view.php';
