@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-ini_set('display_errors', '1');
+/*ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
 
 
 
@@ -23,7 +23,7 @@ function whatIsHappening() {
 
 //your products with their price.
 
-$Food = [
+$food = [
     ['name' => 'Pesto Mozzarella', 'price' => 3],
     ['name' => 'Club Ham', 'price' => 3.20],
     ['name' => 'Club Cheese', 'price' => 3],
@@ -32,23 +32,23 @@ $Food = [
     ['name' => 'Club Salmon', 'price' => 5]
 ];
 
-$Drank = [
+$drank = [
     ['name' => 'Coke', 'price' => 2],
     ['name' => 'Fanta', 'price' => 2],
     ['name' => '7up', 'price' => 2],
     ['name' => 'Ice-tea', 'price' => 2],
     ['name' => 'Ice-tea Green', 'price' => 3],
-    ['name' => 'Ginger Neil', 'price' => "FREE"]
+    ['name' => 'Smelly Nelly', 'price' => 5]
 ];
 
 //food & drank schwitz
-$products = $Drank;
+$products = $drank;
 if (isset($_GET["food"])) {
     if ($_GET["food"] == 1) {
-        $products = $Food;
+        $products = $food;
     }
     else {
-        $products = $Drank;
+        $products = $drank;
     }
 }
 
@@ -81,9 +81,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     else {
         $street = ($_POST["street"]);
-/*        if (!is_string($_POST["street"])) {
-            $streetErr = "<div class='alert alert-danger'>Sorry, I don't know where that is.</div>";
-        }*/
+        if (!is_string($_POST["street"])) {
+            $streetErr = "<div class='alert alert-danger'>Sorry, I'm not sure that's legit.</div>";
+        }
+        else {
+            $_SESSION['street'] = $street;
+        }
     }
 
     if (empty($_POST["streetnumber"])) {
@@ -94,6 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (!is_numeric($_POST["streetnumber"])) {
             $streetnumErr = "<div class='alert alert-danger'>That can't possibly be a number...</div>";
         }
+        else {
+            $_SESSION['streetnumber'] = $streetnum;
+        }
     }
 
     if (empty($_POST["city"])) {
@@ -101,9 +107,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     else {
         $city = ($_POST["city"]);
-/*        if (!is_string($_POST["city"])) {
+        if (!is_string($_POST["city"])) {
             $cityErr = "<div class='alert alert-danger'>That really your ends? NAH B! At least enter one that exists</div>";
-        }*/
+        }
+        else {
+            $_SESSION['city'] = $city;
+        }
+
     }
 
     if (empty ($_POST["zipcode"])) {
@@ -112,17 +122,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     else {
         $zip = ($_POST["zipcode"]);
         if (!is_numeric($_POST["zipcode"])) {
-            $zipErr = "<div class='alert alert-danger'>That's not even a number. Try again with a real zip code you piece of shit.</div>";
+            $zipErr = "<div class='alert alert-danger'>That's not even a number. Try again with a real zip code ya shithead.</div>";
+        }
+        else {
+            $_SESSION['zip'] = $zip;
         }
     }
 }
 
+if ($_SESSION['email']|| $_SESSION['street'] || $_SESSION['streetnumber'] || $_SESSION['city'] || $_SESSION['zip']) {
+    $email = $_SESSION['email'];
+    $street = $_SESSION['street'];
+    $streetnum = $_SESSION['streetnumber'];
+    $city = $_SESSION['city'];
+    $zip = $_SESSION['zip'];
+}
+
 //COUNTDOWN
-//$now = time($nowtime );
+//$now = time($nowtime);
 
 
-
-
-whatIsHappening();
+//whatIsHappening();
 
 require 'form-view.php';

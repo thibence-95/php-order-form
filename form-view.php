@@ -6,20 +6,20 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-    <title>Order food & drinks</title>
+    <title>Order food & drinks at Big Daddy's Ham</title>
 </head>
 
 
 <body>
 <div class="container">
-    <h1>Order food in restaurant "the Personal Ham Processors"</h1>
+    <h1>Order food in restaurant "Big Daddy's Ham"</h1>
     <nav>
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link active" href="?food=1">Order food</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?food=0">Order drinks</a>
+                <a class="nav-link" href="?food=0">Order dranks</a>
             </li>
         </ul>
     </nav>
@@ -27,7 +27,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
-                <input type="text" id="email" name="email" class="form-control" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>"/>
+                <input type="text" id="email" name="email" class="form-control" value="<?php echo $email; ?>"/>
                 <?php echo $emailErr; ?>
             </div>
             <div></div>
@@ -39,24 +39,24 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
-                    <input type="text" name="street" id="street" class="form-control"value="<?php echo isset($_POST['street']) ? $_POST['street'] : '' ?>">
+                    <input type="text" name="street" id="street" class="form-control"value="<?php echo $street; ?>">
 	                <?php echo $streetErr; ?>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number:</label>
-                    <input type="number" id="streetnumber" name="streetnumber" class="form-control"value="<?php echo isset($_POST['streetnumber']) ? $_POST['streetnumber'] : '' ?>">
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control"value="<?php echo $streetnum; ?>">
                     <?php echo $streetnumErr; ?>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control"value="<?php echo isset($_POST['city']) ? $_POST['city'] : '' ?>">
+                    <input type="text" id="city" name="city" class="form-control"value="<?php echo $city; ?>">
                     <?php echo $cityErr; ?>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zip code</label>
-                    <input type="number" id="zipcode" name="zipcode" class="form-control"value="<?php echo isset($_POST['zipcode']) ? $_POST['zipcode'] : '' ?>">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control"value="<?php echo $zip; ?>">
                     <?php echo $zipErr; ?>
                 </div>
             </div>
@@ -83,4 +83,4 @@
     }
 </style>
 </body>
-</html>s
+</html>
