@@ -29,7 +29,8 @@ $food = [
     ['name' => 'Club Cheese', 'price' => 3],
     ['name' => 'Club Ham & Cheese', 'price' => 4],
     ['name' => 'Club Chicken', 'price' => 4],
-    ['name' => 'Club Salmon', 'price' => 5]
+    ['name' => 'Club Salmon', 'price' => 5],
+    ['name' => 'Steve Steak Sausages, eggs n ham', 'price' => 6]
 ];
 
 $drank = [
@@ -130,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 
-if ($_SESSION['email']|| $_SESSION['street'] || $_SESSION['streetnumber'] || $_SESSION['city'] || $_SESSION['zip']) {
+if ($_SESSION['email'] || $_SESSION['street'] || $_SESSION['streetnumber'] || $_SESSION['city'] || $_SESSION['zip']) {
     $email = $_SESSION['email'];
     $street = $_SESSION['street'];
     $streetnum = $_SESSION['streetnumber'];
@@ -139,7 +140,23 @@ if ($_SESSION['email']|| $_SESSION['street'] || $_SESSION['streetnumber'] || $_S
 }
 
 //COUNTDOWN
-//$now = time($nowtime);
+/*$twoHours = time() + (0 * 0 * 2 * 0);
+var_dump($twoHours);*/
+
+$delivery = "Delivery: normal";
+if (empty($_POST['express'])) {
+    $delivery = "Delivery: normal";
+}
+else {
+    $delivery = "Delivery: much speedy";
+}
+
+if ($delivery == "Delivery: normal" ) {
+    $delivery = $delivery."If your order hasn't arrived by". date('h.i.s A', strtotime('+ 2 hours')). "you may come over and slap one of our employees";
+}
+elseif ($delivery == "Delivery; much speedy") {
+    $delivery = $delivery."If your order hasn't arrived by". date('h.i.s A', strtotime('+ 45 minutes')). "you can set our business on fire";
+}
 
 
 //whatIsHappening();
